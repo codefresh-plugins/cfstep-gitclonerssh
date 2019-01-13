@@ -11,7 +11,7 @@ BRANCH=${BRANCH:-master}
 REPO_NAME=${REMOTE_URL##*/}
 echo $REPO_NAME
 if [ "$( echo ${REPO_NAME: -4} )" = ".git" ]; then
-  REPO_NAME=$( $REPO_NAME | rev | cut -c 5- | rev )
+  REPO_NAME=$( echo $REPO_NAME | rev | cut -c 5- | rev )
 fi
 
 # use SSH_KEY environment variable to create key file, if not exists
