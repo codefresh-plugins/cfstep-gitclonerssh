@@ -42,7 +42,8 @@ cd $CLONE_PATH/$REPO_NAME
 if [ "$BRANCH" != "master" ]; then
   echo "Checking out $BRANCH"
   git fetch --all
-  git checkout -b $BRANCH  --track origin/$BRANCH -- && git branch && git status
+  git checkout -b $BRANCH --
+  git branch && git status
 fi
 
 echo "ls -alh $CLONE_PATH/$REPO_NAME"
