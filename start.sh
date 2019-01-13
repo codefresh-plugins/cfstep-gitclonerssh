@@ -4,7 +4,7 @@ set -e
 
 printenv
 
-PATH=${PATH:-$(pwd))}
+CLONE_PATH=${CLONE_PATH:-$(pwd))}
 BRANCH=${BRANCH:-master}
 
 # use SSH_KEY environment variable to create key file, if not exists
@@ -24,12 +24,12 @@ else
   echo "Found $ssh_key_file file"
 fi
 
-echo "\$PATH var is $PATH"
-mkdir -p $PATH
+echo "\$CLONE_PATH var is $CLONE_PATH"
+mkdir -p $CLONE_PATH
 
 echo "Cloning $REMOTE_URL"
-ssh-agent bash -c "ssh-add $ssh_key_file; git clone $REMOTE_URL $PATH"
-cd $PATH
+ssh-agent bash -c "ssh-add $ssh_key_file; git clone $REMOTE_URL $CLONE_PATH"
+cd $CLONE_PATH
 if [ "$BRANCH" != "master"]; then
   git checkout $BRANCH && git branch && git status
 fi
