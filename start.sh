@@ -9,7 +9,7 @@ printenv
 CLONE_PATH=${CLONE_PATH:-$(pwd)}
 BRANCH=${BRANCH:-master}
 REPO_NAME=${REMOTE_URL##*/}
-
+echo $REPO_NAME
 if [ "$( echo ${REPO_NAME: -4} )" = ".git" ]; then
   REPO_NAME=$( $REPO_NAME | rev | cut -c 5- | rev )
 fi
