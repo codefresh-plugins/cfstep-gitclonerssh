@@ -28,11 +28,12 @@ else
 fi
 
 echo "\$CLONE_PATH var is $CLONE_PATH"
+echo $CLONE_PATH/$REPO_NAME/
 rm -rf $CLONE_PATH/$REPO_NAME/
 mkdir -p $CLONE_PATH
 
 echo "Cloning $REMOTE_URL"
-ssh-agent bash -c "ssh-add $ssh_key_file; git clone $REMOTE_URL $CLONE_PATH"
+ssh-agent bash -c "ssh-add $ssh_key_file; git clone $REMOTE_URL $CLONE_PATH/$REPO_NAME"
 cd $CLONE_PATH/$REPO_NAME
 if [ "$BRANCH" != "master" ]; then
   git checkout $BRANCH && git branch && git status
