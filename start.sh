@@ -43,8 +43,8 @@ if [ "$BRANCH" != "master" ]; then
   echo "Checking out $BRANCH"
   pwd
   ls -alh
-  git fetch --all
-  git checkout $BRANCH --
+  ssh-agent bash -c "ssh-add $ssh_key_file; git fetch --all"
+  ssh-agent bash -c "ssh-add $ssh_key_file; git checkout $BRANCH"
   git branch 
   git status
 fi
