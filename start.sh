@@ -41,7 +41,7 @@ ssh-agent bash -c "ssh-add $ssh_key_file; git clone $REMOTE_URL $CLONE_PATH/$REP
 cd $CLONE_PATH/$REPO_NAME
 if [ "$BRANCH" != "master" ]; then
   echo "Checking out $BRANCH"
-  git fetch
+  git fetch --all
   git checkout $BRANCH && git branch && git status
 fi
 
