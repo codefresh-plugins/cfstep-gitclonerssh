@@ -40,6 +40,8 @@ echo "Cloning $REMOTE_URL"
 ssh-agent bash -c "ssh-add $ssh_key_file; git clone $REMOTE_URL $CLONE_PATH/$REPO_NAME"
 cd $CLONE_PATH/$REPO_NAME
 if [ "$BRANCH" != "master" ]; then
+  echo "Checking out $BRANCH"
+  git fetch
   git checkout $BRANCH && git branch && git status
 fi
 
@@ -50,6 +52,8 @@ echo "ls -alh $CLONE_PATH"
 ls -alh $CLONE_PATH
 
 rm $ssh_key_file
+
+## For the future: being aware of already cloned repo, intead of cloning it always:
 
 # echo "\$CLONE_PATH var is $CLONE_PATH"
 # Check if the cloned dir already exists from previous builds
