@@ -8,7 +8,7 @@ printenv
 # Repo-dir is $CLONE_PATH/$REPO_NAME
 CLONE_PATH=${CLONE_PATH:-$(pwd)}
 BRANCH=${BRANCH:-master}
-REPO_NAME=${REMOTE_URL##*/}
+REPO_NAME=$( echo ${REPO_URL##*/} | sed 's/\.git$//' )
 
 # use SSH_KEY environment variable to create key file, if not exists
 ssh_key_file="$HOME/.ssh/id_cfstep-gitclonerssh"
