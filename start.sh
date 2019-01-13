@@ -33,10 +33,16 @@ mkdir -p $CLONE_PATH
 
 echo "Cloning $REMOTE_URL"
 ssh-agent bash -c "ssh-add $ssh_key_file; git clone $REMOTE_URL $CLONE_PATH"
-cd $CLONE_PATH
+cd $CLONE_PATH/$REPO_NAME
 if [ "$BRANCH" != "master" ]; then
   git checkout $BRANCH && git branch && git status
 fi
+
+echo "ls -alh $CLONE_PATH/$REPO_NAME"
+ls -alh $CLONE_PATH/$REPO_NAME
+
+echo "ls -alh $CLONE_PATH"
+ls -alh $CLONE_PATH
 
 rm $ssh_key_file
 
