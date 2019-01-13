@@ -43,7 +43,10 @@ if [ "$BRANCH" != "master" ]; then
   echo "Checking out $BRANCH"
   pwd
   ls -alh
-  ssh-agent bash -c "ssh-add $ssh_key_file; git fetch --all ; git checkout $BRANCH"
+  git fetch --all
+  git checkout refs/remotes/origin/$BRANCH --
+  git branch 
+  git status
 fi
 
 echo "ls -alh $CLONE_PATH/$REPO_NAME"
