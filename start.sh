@@ -44,7 +44,7 @@ if [ "$BRANCH" != "master" ]; then
   pwd
   ls -alh
   git fetch --all
-  git checkout refs/remotes/origin/$BRANCH --
+  git checkout $BRANCH --
   git branch 
   git status
 fi
