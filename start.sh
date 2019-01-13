@@ -31,7 +31,7 @@ echo "Cloning $REMOTE_URL"
 ssh-agent bash -c "ssh-add $ssh_key_file; git clone $REMOTE_URL $CLONE_PATH"
 
 cd $CLONE_PATH
-if [ "$BRANCH" != "master"]; then
+if [ "$BRANCH" != "master" ]; then
   git checkout $BRANCH && git branch && git status
 fi
 
