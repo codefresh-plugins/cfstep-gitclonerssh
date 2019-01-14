@@ -43,8 +43,7 @@ if [ "$BRANCH" != "master" ]; then
   echo "Checking out $BRANCH"
   pwd
   ls -alh
-  #git checkout $BRANCH
-  git branch 
+  git checkout $BRANCH
   git status
 fi
 
