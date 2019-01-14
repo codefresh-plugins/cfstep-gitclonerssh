@@ -2,19 +2,21 @@
 
 set -e
 
-printenv
-
-# CLONE_PATH doesn't include the repo-dir
-# Repo-dir is $CLONE_PATH/$REPO_NAME
+## CLONE_PATH doesn't include the repo-dir
+## Repo-dir is $CLONE_PATH/$REPO_NAME
 CLONE_PATH=${CLONE_PATH:-$(pwd)}
 BRANCH=${BRANCH:-master}
+## From REMOTE_URL remove all components of that string, and keep just the last one after the last '/'
+## Tp get just the simple repo name.
 REPO_NAME=${REMOTE_URL##*/}
 echo $REPO_NAME
+
+## If $REPO_NAME has trailing ".git" string, remove it:
 if [ "$( echo ${REPO_NAME: -4} )" = ".git" ]; then
   REPO_NAME=$( echo $REPO_NAME | rev | cut -c 5- | rev )
 fi
 
-# use SSH_KEY environment variable to create key file, if not exists
+## Use SSH_KEY environment variable to create key file, if it does not exist
 ssh_key_file="$HOME/.ssh/id_cfstep-gitclonerssh"
 if [[ ! -f "$ssh_key_file" ]]; then 
   if [[ ! -z "${SSH_KEY}" ]]; then
@@ -31,9 +33,10 @@ else
   echo "Found $ssh_key_file file"
 fi
 
-echo "\$CLONE_PATH var is $CLONE_PATH"
-echo $CLONE_PATH/$REPO_NAME/
+## Delete existing $CLONE_PATH/$REPO_NAME/ dir, to be able to clone there later
 rm -rf $CLONE_PATH/$REPO_NAME/
+
+## Be sure the path set by the user exists, so it can be used for cloning later
 mkdir -p $CLONE_PATH
 
 echo "Cloning $REMOTE_URL"
@@ -41,19 +44,9 @@ ssh-agent bash -c "ssh-add $ssh_key_file; git clone $REMOTE_URL $CLONE_PATH/$REP
 cd $CLONE_PATH/$REPO_NAME
 if [ "$BRANCH" != "master" ]; then
   echo "Checking out $BRANCH"
-  pwd
-  ls -alh
   git checkout $BRANCH
-  git status
 fi
 
-echo "ls -alh $CLONE_PATH/$REPO_NAME"
-ls -alh $CLONE_PATH/$REPO_NAME
-
-echo "ls -alh $CLONE_PATH"
-ls -alh $CLONE_PATH
-
-rm $ssh_key_file
 
 ## For the future: being aware of already cloned repo, intead of cloning it always:
 
