@@ -11,7 +11,7 @@ sources:
 maintainers:
   - name: Francisco Cocozza
     email: francisco@codefresh.io
-icon: https://git-scm.com/images/icons/downloads/Git-Icon-1788C.png
+icon: https://github.com/codefresh-plugins/cfstep-gitclonerssh/blob/master/icon.jpg
 envs:
     - name: REMOTE_URL
       type: required
