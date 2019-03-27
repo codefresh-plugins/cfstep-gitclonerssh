@@ -2,6 +2,8 @@ image: codefreshplugins/cfstep-gitclonerssh
 tag: latest
 version: 0.1.0
 description: clone git repositories via SSH.
+categories:
+  - utility
 keywords:
   - git
   - clone
