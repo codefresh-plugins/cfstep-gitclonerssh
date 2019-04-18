@@ -3,8 +3,8 @@ tag: latest
 version: 0.1.0
 description: clone git repositories via SSH.
 categories:
-  - Git
-  - Utility
+  - git
+  - utility
 keywords:
   - git
   - clone
